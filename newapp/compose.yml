@@ -4,13 +4,28 @@ services:
     build: ./bus/
     ports:
       - "1111:80"
+    networks:
+      - bus_network
   flight:
     container_name: flight_container
     build: ./flight/
+    networks:
+      - flight_network
     ports:
       - "2222:80"
   movie:
     container_name: movie_container
+    networks: 
+      - movie_network
     build: ./movie/
     ports:
       - "3333:80"
+
+networks:
+  bus_network:
+    driver: bridge
+  movie_network:
+    driver: bridge
+  flight_network:
+    driver: bridge
+
