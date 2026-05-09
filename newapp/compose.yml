@@ -1,0 +1,16 @@
+services:
+  bus:
+    container_name: bus_container
+    build: ./bus/
+    ports:
+      - "1111:80"
+  flight:
+    container_name: flight_container
+    build: ./flight/
+    ports:
+      - "2222:80"
+  movie:
+    container_name: movie_container
+    build: ./movie/
+    ports:
+      - "3333:80"
