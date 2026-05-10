@@ -6,13 +6,18 @@ services:
       - "1111:80"
     networks:
       - bus_network
+    volumes:
+      - /bus:/opt/venkatesh_bus
   flight:
     container_name: flight_container
     build: ./flight/
     networks:
       - flight_network
+      - bus_network
     ports:
       - "2222:80"
+    volumes:
+      - /flight:/opt/venkatesh_flight
   movie:
     container_name: movie_container
     networks: 
@@ -20,6 +25,8 @@ services:
     build: ./movie/
     ports:
       - "3333:80"
+    volumes:
+      - /movie:/opt/venkatesh_movie
 
 networks:
   bus_network:
