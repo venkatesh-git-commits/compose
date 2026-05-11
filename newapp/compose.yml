@@ -18,15 +18,31 @@ services:
       - "2222:80"
     volumes:
       - /flight:/opt/venkatesh_flight
+    env_file: ./srv1.env
+      
   movie:
     container_name: movie_container
     networks: 
       - movie_network
     build: ./movie/
+    restart: always
     ports:
       - "3333:80"
     volumes:
       - /movie:/opt/venkatesh_movie
+    environment:
+      name: venkatesh
+      place: Eluru
+      age: 26
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+        reservations:
+          cpus: "0.25"
+          memory: 64M
+
 
 networks:
   bus_network:
